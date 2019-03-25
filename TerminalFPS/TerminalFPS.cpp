@@ -53,7 +53,7 @@ int main()
 	while (1) {
 		//根据宽比例计算角度，再从角度判断与墙的距离
 		for (int i = 0 ; i<nScreenWidth ; i++) {
-			float fPlayerAngle = (fPlayerA - fFov / 2) + ((float)i / (float)nScreenWidth)*fFov;
+			float fPlayerAngle = (fPlayerA - fFov / 2.0) + ((float)i / (float)nScreenWidth)*fFov;
 
 			float fDistanceToWall = 0.0f;
 			bool hitWall = false;
@@ -63,7 +63,7 @@ int main()
 
 
 			while (!hitWall && fDistanceToWall<nDepth) {
-				fDistanceToWall += 0.1f;
+				fDistanceToWall += 0.1f; 
 				
 				int nTestX = (int)(fPlayerX + fEyeX * fDistanceToWall);
 				int nTestY = (int)(fPlayerY + fEyeY * fDistanceToWall);
@@ -85,13 +85,13 @@ int main()
 
 			for (int j = 0; j<nScreenHeight ; j++) {
 				if (j < nCelling) {
-					screen[j*nScreenHeight + i] = ' ';
+					screen[j*nScreenWidth + i] = ' ';
 				}
 				else if (j>nCelling && j<= nFloor) {
-					screen[j*nScreenHeight + i] = '#';
+					screen[j*nScreenWidth + i] = '#';
 				}
 				else {
-					screen[j*nScreenHeight + i] = ' ';
+					screen[j*nScreenWidth + i] = ' ';
 				}
 
 			}
